@@ -76,39 +76,6 @@
 </body>
 <script src="../static/js/jquery.js"></script>
 <script src="../static/js/bootstrap.js"></script>
-<script>
-    // let baseUrl = ''
-    $(function () {
-        let isLogin = false;
 
-        $('#login-btn').on('click', function () {
-            let userName = $("#userName").val();
-            let password = $('#password').val();
-
-            $.ajax({
-                type: 'post',
-                url: 'http://127.0.0.1:8080/doLogin',
-                data: {
-                    userName, password
-                },
-                dataType: 'json',
-                success(res) {
-                    // if (res.code != 200) {
-                    $('.container-fluid').text(res.msg);
-                    $("#modelId").modal();                    
-                    isLogin = res.code == 200;
-                    localStorage.setItem('userId',res.userId);
-                }
-            });
-
-        });
-
-        $('#modelId').on('hidden.bs.modal', function (e) {
-            if (isLogin) {
-                location.href = './index.html';
-            }
-        })
-    });
-</script>
 
 </html>

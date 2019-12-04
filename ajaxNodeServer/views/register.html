@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>表单注册</title>
@@ -135,185 +136,18 @@
 </body>
 <script src="../static/js/jquery.js"></script>
 <script>
-	//需求分析
-	// 1. 全部输入值不能为空  用立即注册注册事件
-	// 2.名字看是否重复  （去服务器查重）
-	// 3.密码强度  数字+英文+不能小于6位
-	// 4.手机号码格式
-	// 5.点击获取验证码
-	// 6.点击立即注册（存入到数据库中）
-
-	//注册用户名事件
-
-	//查空格
-	let userName;
-
-	$('.name').on('blur', function () {
-		userName = $('.name').val();
-
-		if (/\s/.test(userName)) {
-			alert('不能输入空格');
-			return;
-		}
-
-		// 看是否重名
-		// $.ajax({
-		// 	url: 'http://127.0.0.1:8080/isUserNameExist',
-		// 	type: 'get',
-		// 	data: {
-		// 		userName: userName
-		// 	},
-		// 	success: function (res) {
-		// 		if (res.code !== 200) {
-		// 			alert('用户名重复使用');
-		// 		}
-		// 	}
-
-		// })
-
-		let xhr = new XMLHttpRequest();
-		xhr.open('get',`http://127.0.0.1:8080/isUserNameExist?userName=${userName}`);
-		xhr.send();
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState === 4 && xhr.status === 200){
-				console.log(xhr.responseText);
-			}
-		}
-	})
+	//分析需求
+	// 总：点击立即注册可以实现用户注册
+	// 1.全部空格不能为空！  注册事件
+	// 2.光标移除用户名会判断用户名是否已经存在！   json
+	// 3.密码要保证存在一个英文一个数字一个特殊字符    正则表达式
+	// 4、密码要一样 判断
+	// 5. 手机号码必须是一个手机号码格式  正则表达式
+	// 6。点击获取密码获得验证码  并自动存在短信input中
+	// 7.短信验证码必须是四位数字格式
 
 
-	//注册submit事件
-	$('.submit').on('click', function () {
-
-
-		// 用户名不能为空
-		if ($('.name').val().length == 0) {
-			alert('用户名不能为空');
-			return;
-		}
-
-		// 第二栏密码不能为空
-		if ($('.pass').val().length == 0) {
-			alert('密码不能为空');
-			return;
-		}
-
-		// 手机不能为空
-		if ($('.mobile').val().length == 0) {
-			alert('手机号码不能为空');
-			return;
-		}
-
-		//短信验证码不能为空
-		if ($('.code').val().length == 0) {
-			alert('短信验证码不能为空');
-			return;
-		}
-
-		console.log(userName);
-		console.log(password);
-		console.log(phone);
-		//实现用户注册
-		// $.ajax({
-		// 	url: "http://192.168.73.53:8080/doRegister",
-		// 	type: "post",
-		// 	data: {
-		// 		userName: userName,
-		// 		password: password,
-		// 		phone: phone
-		// 	},
-		// 	success: function (res) {
-		// 		if(res.code == 200){
-		// 			alert('注册成功');
-		// 		}
-
-		// 	}
-
-		// })
-
-		let xhr = new XMLHttpRequest();
-		xhr.open('post','http://127.0.0.1:8080/doRegister');
-
-		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-
-		xhr.send(`userName=${userName}&password=${password}&phone=${phone}`);
-
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState === 4 && xhr.status === 200){
-				console.log(xhr.responseText);
-			}
-		}
-
-	})
-
-
-	//注册事件的到第二栏密码
-	let password;
-	$('.pass').on('blur', function () {
-		// 不能小于6位
-		password = $('.pass').val();
-		if (password.length <= 6) {
-			alert('密码小于6位');
-			return;
-		}
-
-		//至少有一个数字
-		if (!/\d/.test(password)) {
-			alert('密码最少要有一个数字');
-			return;
-		}
-
-		//至少有一个字母
-		if (!/[a-zA-Z]/.test(password)) {
-			alert('密码最少要有一个字母');
-			return;
-		}
-
-		//至少有一个特殊符号
-		if (!/[-+=#]+/.test(password)) {
-			alert('密码或没有要有一个特殊符号');
-			return;
-		}
-	})
-
-	//注册事件的到第三栏密码
-	$('.repass').on('blur', function () {
-		if ($('.repass').val() !== $('.pass').val()) {
-			alert('两个密码不相符');
-			return;
-		}
-	})
-
-	//第四栏验证手机
-	let phone;
-	$('.mobile').on('blur', function () {
-		phone = $('.mobile').val();
-		if (!/^[1]\d{10}$/.test(phone)) {
-			alert('手机号码格式不对');
-			return;
-		}
-	})
-
-	//第五栏验证码必须是四位数字
-	let code;
-	$('.code').on('blur', function () {
-		code = $('.code').val();
-		if (!/^\d{4}$/.test(code)) {
-			alert('验证码格式不对');
-			return;
-		}
-	})
-
-	//点击得到验证码
-	$('.verify').on('click', function () {
-		$.ajax({
-			url: 'http://127.0.0.1:8080/getCodeWithoutPhone',
-			type: 'get',
-			success: function (res) {
-				$('.code').val(res.code);
-			}
-		})
-	})
+	
 </script>
 
 
