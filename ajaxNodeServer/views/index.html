@@ -75,8 +75,6 @@
       </div>
     </div>
   </div>
-
-
   </script>
 </body>
 <script src="../static/js/jquery.js"></script>
@@ -88,15 +86,26 @@
 
 <!-- 利用localstorage里的id判断是不是曾经登录过 -->
 
-<!-- //判断localstorage -->
+<!-- //判断localstorage是不是存有id -->
 <script>
   let infor = localStorage.getItem('id');
 
   if (infor == null) {
     $('.container-fluid').html('没有登录，需要重新登录');
     $('#modelId').modal();
+  } else {
+
+    //若登陆了，则需要把登录按钮隐藏，添加，退出按键显示，以及动态显示“英雄”案例获取所有数据
+    $('.btn-login').hide();
+    $('.btn-exit').removeAttr('hidden');
+    $('.pull-right').removeAttr('hidden');
 
   }
+
+  //重新登录框弹出时候，点击确定转到登录页面,注册事件
+  $('.btn-sure-del').on('click', function () {
+    location.href = '../views/login.html';
+  })
 </script>
 
 
