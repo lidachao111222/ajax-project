@@ -76,6 +76,18 @@
 </body>
 <script src="../static/js/jquery.js"></script>
 <script src="../static/js/bootstrap.js"></script>
+<!-- 分析登录需求 -->
+<!-- 1.点击登录即可进去index页面 -->
+<!-- 2.点击登录时用户名不能为空 密码不能为空 -->
+<!-- 3.对用户名和密码input设定不能为空格 -->
 
+<script>
+    $('#login-btn').on('click', function () {
+        if ($('#userName').val().length === 0 || $('#password').val().length === 0) {
+            $('.container-fluid').html('密码或用户名不能为空');
+            $('#modelId').modal();
+        }
+    })
+</script>
 
 </html>
