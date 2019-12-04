@@ -87,7 +87,6 @@
         //注意图片比较大，所以没法直接传过去，需要变成二进制流
         //先得到图片
         let file = this.files[0];
-
         // 创建formData对象
         let fd = new FormData();
         fd.append('pic', file);
@@ -98,9 +97,11 @@
             type: 'post',
             data: fd,
             contentType: false,
-            processData:false,
-            success:function(res){
-                console.log(res)
+            processData: false,
+            success: function (res) {
+                console.log(res);
+                //添加后改变图片
+                $('#photo').attr('src', res.baseDir+res.filePath)
             }
         })
 
