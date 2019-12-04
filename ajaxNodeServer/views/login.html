@@ -105,6 +105,11 @@
                 $('.container-fluid').html(res.msg);
                 $('#modelId').modal();
 
+                // 把传回来的id存到localstorage中
+                let Jarr = JSON.stringify(res.userId);
+                localStorage.setItem('id', Jarr);
+
+                location.href = '../views/index.html';
             }
         })
     })
