@@ -88,7 +88,7 @@
         //先得到图片
         let file = this.files[0];
         // 创建formData对象
-        let fd = new FormData();
+        let fd = new FormData();   //难点
         fd.append('pic', file);
 
         // 异步上传图片
@@ -96,17 +96,22 @@
             url: 'http://127.0.0.1:8080/uploadHeadImg',
             type: 'post',
             data: fd,
-            contentType: false,
-            processData: false,
+            contentType: false,  // 难点
+            processData: false,   // 难点
             success: function (res) {
                 console.log(res);
                 //添加后改变图片
-                $('#photo').attr('src', res.baseDir+res.filePath)
+                $('#photo').attr('src', res.baseDir+res.filePath);
+                $('#headSrc').val(res.filePath);
             }
-        })
-
-
+        }) 
     });
+
+    //点击新增按钮，"英雄"案例实现新增用户信息
+    $('#sub').on('click',function(){
+        let data = $('#myform').serialize();
+        
+    })
 </script>
 
 </html>
