@@ -169,6 +169,8 @@
 			alert('验证码不能为空');
 			return;
 		}
+
+		
 	})
 
 
@@ -256,8 +258,17 @@
 		}
 	})
 
-
-	
+	// 点击获取验证码
+	$('.verify').on('click', function () {
+		// ajax取得验证码
+		$.ajax({
+			url: 'http://127.0.0.1:8080/getCodeWithoutPhone',
+			get: 'get',
+			success: function (res) {
+				$('.code').val(res.code);
+			}
+		})
+	})
 </script>
 
 
