@@ -194,6 +194,43 @@
 			}
 		})
 	})
+
+
+	// 密码要保证存在一个英文一个数字一个特殊字符 密码不能小于六位
+	$('.pass').on('blur', function () {
+
+		if ($('.pass').val().length < 6) {
+			alert('密码不能小于六位');
+			return;
+		}
+
+
+		//首先正则判断是否是空格
+		if (/\s/.test($('.pass').val())) {
+			alert('用户名不能有空格');
+			return;
+		}
+
+		//正则判断密码要有一个数字
+		if (!/\d+/.test($('.pass').val())) {
+			alert('密码要有一个数字');
+			return;
+		}
+
+		//正则判断密码要有一个字母
+		if (!/[a-zA-Z]/.test($('.pass').val())) {
+			alert('密码要有一个字母');
+			return;
+		}
+
+		//正则判断密码要有一个特殊字符  
+		if (!/[-+=\.]/.test($('.pass').val())) {
+			alert('密码要有一个特殊字符');
+			return;
+		}
+
+
+	})
 </script>
 
 
