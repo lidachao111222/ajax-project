@@ -121,7 +121,7 @@
 
   | 参数名称 | 参数说明 | 备注       |
   | -------- | -------- | ---------- |
-  | username | 用户名   | 不能为null |
+  | userName | 用户名   | 不能为null |
   | password | 密码     | 不能为null |
   | phone    | 手机号   | 不能为null |
 

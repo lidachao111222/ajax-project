@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- //封装ajax ， 首先写get和post的通用格式 -->
+    <!-- get通过open()传参，post通过send传参 -->
+    <script>
+        function ajax(obj) {
+
+            obj = obj || {};
+
+            type = obj.type || 'get';
+            url = obj.url || '';
+            data = obj.data || {};
+
+
+            // 把data从对象的userName:li的形式变成userName=li的形式
+
+            let arr = [];
+            for (key in data) {
+                arr.push(key + '=' + data[key]);
+            }
+
+            data = arr.join('&');
+
+            //创建对象
+            let xhr = new XMLHttpRequest();
+
+            // 判断type是post还是get
+            if (type === 'get') {
+                xhr.open('get', `${url}?${data}`);
+                xhr.send();
+            } else {
+                xhr.open('post', url);
+                //设定表头
+                xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+
+                xhr.send(data);
+            }
+
+            // 监听事件
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    obj.callback && obj.callback(xhr.responseText);
+                }
+            }
+        }
+
+        ajax({
+            type: 'post',
+            url: 'http://127.0.0.1:8080/doRegister',
+            data: {
+                userName: 'lic',
+                password: 123456,
+                phone: 12345678910
+            },
+            callback: function (xhr) {
+                console.log(xhr)
+            }
+        })
+
+        //封装成功！！！
+    </script>
+
+
+</body>
+
+</html>

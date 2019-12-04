@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    
+        // 创建对象
+        let xhr = new XMLHttpRequest();
+
+        // 给对象type和url
+        xhr.open('post','http://127.0.0.1:8080/doRegister');
+        // post带参数时，需要把requestsHeader的 Content-Type 改成键值形式
+
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        // 发送请求
+        xhr.send('userName=li&password=123456&phone=13422489636 ');
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState ===4 && xhr.status ===200){
+                console.log(xhr.responseText);
+            }
+        }
+    
+    </script>
+    
+</body>
+</html>
