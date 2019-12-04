@@ -170,7 +170,24 @@
 			return;
 		}
 
-		
+		let userName = $('.name').val();
+		let password = $('.pass').val();
+		let phone = $('.mobile').val();
+		// 实现用户注册
+		$.ajax({
+			url: 'http://127.0.0.1:8080/doRegister',
+			type: 'post',
+			data: {
+				userName: userName,
+				password: password,
+				phone: phone
+			},
+			success: function (res) {
+
+				alert(res.msg);
+				location.href ='../views.login.html'
+			}
+		})
 	})
 
 
