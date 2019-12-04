@@ -83,11 +83,21 @@
 <script src="../static/js/bootstrap.js"></script>
 <script src="../static/js/template-web.js"></script>
 
-//分析需求
+<!-- //分析需求 -->
 <!-- 1.判断之前是否登录过，如果没有登录过，则需要登录。如果登陆过则显示“英雄”案例获取所有数据 -->
 
 <!-- 利用localstorage里的id判断是不是曾经登录过 -->
 
+<!-- //判断localstorage -->
+<script>
+  let infor = localStorage.getItem('id');
+
+  if (infor == null) {
+    $('.container-fluid').html('没有登录，需要重新登录');
+    $('#modelId').modal();
+
+  }
+</script>
 
 
 </html>
