@@ -147,7 +147,29 @@
 	// 7.短信验证码必须是四位数字格式
 
 
-	
+	// 注册立即注册事件
+	$('.submit ').on('click', function () {
+		// 判断用户名是否为空
+		if ($('.name').val().length === 0) {
+			alert('用户名不能为空');
+			return;
+		}
+		// 判断设置密码是否为空
+		if ($('.pass').val().length === 0) {
+			alert('密码不能为空');
+			return;
+		}
+		// 判断设置mobile是否为空
+		if ($('.mobile').val().length === 0) {
+			alert('手机号码不能为空');
+			return;
+		}
+		// 判断设置验证码是否为空
+		if ($('.code').val().length === 0) {
+			alert('验证码不能为空');
+			return;
+		}
+	})
 </script>
 
 
