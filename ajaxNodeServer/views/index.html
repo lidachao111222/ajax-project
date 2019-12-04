@@ -81,6 +81,22 @@
 <script src="../static/js/bootstrap.js"></script>
 <script src="../static/js/template-web.js"></script>
 
+<!-- 用模板引擎把数据存到变量里面 -->
+<script type="text/template" id="tp">
+  {{each $data e }}
+  <tr>
+      <td></td>
+      <td>{{e.name}}</td>
+      <td>{{e.gender}}</td>
+      <td><img src="../static/images/{{e.img}}"></td>
+      <td><a href="./edit.html?id={{e.id}}">修改</a> 
+        <a data-id="{{e.id}}" href="javscript:void(0);">删除</a>
+      </td>
+    </tr> 
+    {{/each}}
+</script>
+
+
 <!-- //分析需求 -->
 <!-- 1.判断之前是否登录过，如果没有登录过，则需要登录。如果登陆过则显示“英雄”案例获取所有数据 -->
 
@@ -94,11 +110,23 @@
     $('.container-fluid').html('没有登录，需要重新登录');
     $('#modelId').modal();
   } else {
-
     //若登陆了，则需要把登录按钮隐藏，添加，退出按键显示，以及动态显示“英雄”案例获取所有数据
     $('.btn-login').hide();
     $('.btn-exit').removeAttr('hidden');
     $('.pull-right').removeAttr('hidden');
+    $('.table').removeAttr('hidden');;
+
+    //先把数据取回来
+
+    $.ajax({
+      url: 'http://127.0.0.1:8080/getAllHero',
+      type: 'post',
+      success: function (res) {
+        let data = res['data'];
+        let result = template('tp', data);
+        $('#tbody').append(result);
+      }
+    })
 
   }
 
