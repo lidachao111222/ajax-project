@@ -175,13 +175,25 @@
 	//光标移除用户名会判断用户名是否已经存在，并且不能为空格
 	$('.name').on('blur', function () {
 		//首先正则判断是否是空格
-		if(/\s/.test($('.name').val())){
+		if (/\s/.test($('.name').val())) {
 			alert('用户名不能有空格');
 			return;
 		}
+		let userName = $('.name').val();
+		// 验证用户名是否有被重用
+		$.ajax({
+			type: 'get',
+			url: 'http://127.0.0.1:8080/isUserNameExist',
+			data: {
+				userName: userName
+			},
+			success: function (res) {
+				if (res.code !== 200) {
+					alert('用户名被重用啦，请重新输入一个');
+				}
+			}
+		})
 	})
-
-
 </script>
 
 
