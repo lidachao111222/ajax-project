@@ -170,6 +170,18 @@
 			return;
 		}
 	})
+
+
+	//光标移除用户名会判断用户名是否已经存在，并且不能为空格
+	$('.name').on('blur', function () {
+		//首先正则判断是否是空格
+		if(/\s/.test($('.name').val())){
+			alert('用户名不能有空格');
+			return;
+		}
+	})
+
+
 </script>
 
 
