@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../static/js/template-web.js"></script>
+</head>
+
+<body>
+
+    <!-- //1.首先先引用 -->
+
+    <!-- 2.写模板 -->
+    <script type="text/template" id="tp">
+        <div><%=$data.name%> </div>
+    </script>
+
+    <!-- 3.把值存进变量里面 使用引擎的template()方法-->
+    <script>
+        let result = template('tp',{name:'chao'});
+        document.body.innerHTML = result;
+    </script>
+</body>
+
+</html>

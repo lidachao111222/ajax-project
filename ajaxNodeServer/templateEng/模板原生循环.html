@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../static/js/template-web.js"></script>
+</head>
+
+<body>
+
+    <!-- //引用文件 -->
+
+    <!-- 写模板 -->
+    <script type="text/template" id="tp">
+        <% for(var i =0;i<$data.length ; i++){  %>
+         <div><%=$data[i].name %></div>   
+        <%}%>
+    </script>
+
+    <script>
+        let result = template('tp', [{
+            name: 'li'
+        }, {
+            name: 'tony'
+        }])
+
+        document.body.innerHTML = result;
+    </script>
+</body>
+
+</html>
