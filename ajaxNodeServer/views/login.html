@@ -80,8 +80,16 @@
 <!-- 1.点击登录即可进去index页面 -->
 <!-- 2.点击登录时用户名不能为空 密码不能为空 -->
 <!-- 3.对用户名和密码input设定不能为空格 -->
-
+<!-- 4.验证local里面知否存有值，若有则代表登录过了，直接转到index -->
 <script>
+
+    // 验证是否之前登录过
+    let infor = localStorage.getItem('id');
+    if (infor !== null) {
+        alert('已经登陆过啦，正在转到主页');
+        location.href = '../views/index.html';
+    }
+
     $('#login-btn').on('click', function () {
 
         //点击登录时用户名不能为空 密码不能为空 
