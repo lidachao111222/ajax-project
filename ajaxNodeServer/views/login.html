@@ -83,9 +83,44 @@
 
 <script>
     $('#login-btn').on('click', function () {
+
+        //点击登录时用户名不能为空 密码不能为空 
         if ($('#userName').val().length === 0 || $('#password').val().length === 0) {
             $('.container-fluid').html('密码或用户名不能为空');
             $('#modelId').modal();
+        }
+
+        let userName = $('#userName').val();
+        let password = $('#password').val();
+        //传入数据给服务器判断是不是有这样的用户名和密码
+        $.ajax({
+            url: ' http://127.0.0.1:8080/doLogin',
+            type: 'post',
+            data: {
+                userName: userName,
+                password: password
+            },
+            success: function (res) {
+
+                $('.container-fluid').html(res.msg);
+                $('#modelId').modal();
+
+            }
+        })
+    })
+
+
+    $('#userName').on('blur', function () {
+        if (/\s/.test($('#userName').val())) {
+            alert('用户名不能有空格');
+            return;
+        }
+    })
+
+    $('#password').on('blur', function () {
+        if (/\s/.test($('#password').val())) {
+            alert('密码不能有空格');
+            return;
         }
     })
 </script>
