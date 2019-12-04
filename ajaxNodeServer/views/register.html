@@ -232,14 +232,32 @@
 	})
 
 	//这里只需要判断密码是否和第二栏的一样即可
-	$('.repass').on('blur',function(){
-		if(! ($('.pass').val() === $('.repass').val())){
+	$('.repass').on('blur', function () {
+		if (!($('.pass').val() === $('.repass').val())) {
 			alert('密码不一致');
 			return;
 		}
 	})
 
+	//第四栏手机号码判断是不是手机号码格式
+	$('.mobile').on('blur', function () {
+		if (!/^[1]\d{10}$/.test($('.mobile').val())) {
+			alert('手机格式不对');
+			return;
+		}
+	})
 
+
+	//第五栏判断是不是短信验证码码格式
+	$('.code').on('blur', function () {
+		if (!/^\d{4}$/.test($('.code').val())) {
+			alert('验证码格式不对');
+			return;
+		}
+	})
+
+
+	
 </script>
 
 
