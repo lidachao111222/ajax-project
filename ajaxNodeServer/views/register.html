@@ -229,8 +229,17 @@
 			return;
 		}
 
-
 	})
+
+	//这里只需要判断密码是否和第二栏的一样即可
+	$('.repass').on('blur',function(){
+		if(! ($('.pass').val() === $('.repass').val())){
+			alert('密码不一致');
+			return;
+		}
+	})
+
+
 </script>
 
 
